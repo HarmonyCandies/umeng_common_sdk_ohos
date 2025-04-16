@@ -1,0 +1,10 @@
+{
+  "module": {
+    "name": "umeng_common_sdk_ohos",
+    "type": "har",
+    "deviceTypes": [
+      "default",
+      "tablet"
+    ]
+  }
+}
