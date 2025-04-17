@@ -7,14 +7,14 @@
 [![GitHub issues](https://img.shields.io/github/issues/harmonycandies/umeng_common_sdk_ohos)](https://github.com/harmonycandies/umeng_common_sdk_ohos/issues)
 [![flutter-candies](https://pub.idqqimg.com/wpa/images/group.png)](https://qm.qq.com/q/ajfsyk2RcA)
 
-[`device_info_plus`][1] 在 OpenHarmony 平台的实现。
+[`umeng_common_sdk_ohos`][1] 在 OpenHarmony 平台的实现。
 
 ## 集成
 
 ```yaml
 dependencies:
   umeng_common_sdk: 1.2.8
-  umeng_common_sdk_ohos: 1.2.8
+  umeng_common_sdk_ohos: 1.2.9
 ```
 
 ### OpenHarmony/HarmonyOS
