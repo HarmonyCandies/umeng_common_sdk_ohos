@@ -7,6 +7,8 @@
 [![GitHub issues](https://img.shields.io/github/issues/harmonycandies/umeng_common_sdk_ohos)](https://github.com/harmonycandies/umeng_common_sdk_ohos/issues)
 [![flutter-candies](https://pub.idqqimg.com/wpa/images/group.png)](https://qm.qq.com/q/ajfsyk2RcA)
 
+> **停止维护**：官方 [`umeng_common_sdk`][1] 自 `1.3.1` 起已原生支持 HarmonyOS/OpenHarmony，本包已停止维护，请直接使用官方包，无需再引入本依赖。
+
 [`umeng_common_sdk_ohos`][1] 在 OpenHarmony 平台的实现。
 
 ## 集成
