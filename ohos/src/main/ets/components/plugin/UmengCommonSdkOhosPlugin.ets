@@ -12,6 +12,11 @@ import {
 import { common } from '@kit.AbilityKit';
 import * as umeng from '@umeng/analytics';
 import { hilog } from '@kit.PerformanceAnalysisKit';
+import {
+  applyMethodOutcome,
+  completeResult,
+  RESULT_SUCCESS,
+} from './method_result_completer';
 
 const TAG: string = "UmengCommonSdkOhosPlugin";
 
@@ -50,18 +55,30 @@ export default class UmengCommonSdkOhosPlugin implements FlutterPlugin, MethodCa
   }
 
   onMethodCall(call: MethodCall, result: MethodResult): void {
-    switch (call.method) {
+    try {
+      let args: Object | null = call.args == null ? null : call.args as Object;
+      let outcome = completeResult(call.method, args, this.context != null);
+      if (outcome.status === RESULT_SUCCESS) {
+        this.invokeSdk(call.method, call.args);
+      }
+      applyMethodOutcome(result, outcome);
+    } catch (e) {
+      result.error('SDK_ERROR', `${call.method} failed: ${e}`, null);
+    }
+  }
+
+  private invokeSdk(method: string, args: Any): void {
+    switch (method) {
       case "getPlatformVersion":
-        result.success("OpenHarmony ^ ^ ");
         break;
       case "initCommon":
         this.initCommon();
         break;
       case "onEvent":
-        this.onEvent(call.args);
+        this.onEvent(args);
         break;
       case "onProfileSignIn":
-        this.onProfileSignIn(call.args);
+        this.onProfileSignIn(args);
         break;
       case "onProfileSignOff":
         this.onProfileSignOff();
@@ -73,16 +90,15 @@ export default class UmengCommonSdkOhosPlugin implements FlutterPlugin, MethodCa
         this.setPageCollectionModeManual();
         break;
       case "onPageStart":
-        this.onPageStart(call.args);
+        this.onPageStart(args);
         break;
       case "onPageEnd":
-        this.onPageEnd(call.args);
+        this.onPageEnd(args);
         break;
       case "reportError":
-        this.reportError(call.args);
+        this.reportError(args);
         break;
       default:
-        result.notImplemented();
         break;
     }
   }
